@@ -46,4 +46,27 @@ public class Juego {
         // Se usará, por ejemplo, en JList para mostrar el título y calificación
         return titulo + " (" + calificacion + ")";
     }
+
+    // AGREGA ESTOS SETTERS AL FINAL DE LA CLASE JUEGO
+    public void setTitulo(String titulo) { 
+        this.titulo = titulo; 
+    }
+    public void setPlataforma(String plataforma) { 
+        this.plataforma = plataforma; 
+    }
+    public void setGenero(String genero) { 
+        this.genero = genero; 
+    }
+    public void setCalificacion(double calificacion) { 
+        this.calificacion = calificacion; 
+    }
+    public void setRutaImagen(String rutaImagen) { 
+        this.rutaImagen = rutaImagen; 
+    }
+    public void setañoLanzamiento(int añoLanzamiento) { 
+        this.añoLanzamiento = añoLanzamiento; 
+    } 
+    public void setEstado(String estado) { 
+        this.estado = estado; 
+    }
 }

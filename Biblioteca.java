@@ -86,7 +86,7 @@ public class Biblioteca implements Serializable {
      * Filtro Maestro: Busca por texto y/o filtros específicos.
      * Si un parámetro es null o vacío, se ignora ese criterio.
      */
-    public List<Juego> buscarJuegos(String texto, String plataforma, String genero, Integer anioMin, Integer anioMax) {
+    public List<Juego> buscarJuegos(String texto, String plataforma, String genero, Integer añoMin, Integer añoMax) {
         return juegos.stream().filter(j -> {
             boolean coincide = true;
 
@@ -112,10 +112,10 @@ public class Biblioteca implements Serializable {
 
             // 4. Filtro por Año (Rango)
             if (coincide && anioMin != null) {
-                if (j.getAñoLanzamiento() < anioMin) coincide = false;
+                if (j.getAñoLanzamiento() < añoMin) coincide = false;
             }
             if (coincide && anioMax != null) {
-                if (j.getAñoLanzamiento() > anioMax) coincide = false;
+                if (j.getAñoLanzamiento() > añoMax) coincide = false;
             }
 
             return coincide;

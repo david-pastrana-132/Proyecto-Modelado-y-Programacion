@@ -111,10 +111,10 @@ public class Biblioteca implements Serializable {
             }
 
             // 4. Filtro por Año (Rango)
-            if (coincide && anioMin != null) {
+            if (coincide && añoMin != null) {
                 if (j.getAñoLanzamiento() < añoMin) coincide = false;
             }
-            if (coincide && anioMax != null) {
+            if (coincide && añoMax != null) {
                 if (j.getAñoLanzamiento() > añoMax) coincide = false;
             }
 

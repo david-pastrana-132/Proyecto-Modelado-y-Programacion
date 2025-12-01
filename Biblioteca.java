@@ -7,12 +7,12 @@ import java.util.stream.Collectors;
 public class Biblioteca implements Serializable {
     private static final long serialVersionUID = 1L;
     
-    private List<Juego> juegos;
-    private List<Subcoleccion> subcolecciones;
+    private List<Juego> listaMaestra;
+    private List<Subcoleccion> misColecciones;
 
     public Biblioteca() {
-        this.juegos = new ArrayList<>();
-        this.subcolecciones = new ArrayList<>();
+        this.listaMaestra = new ArrayList<>();
+        this.misColecciones = new ArrayList<>();
     }
 
     // --- MÉTODOS DE PERSISTENCIA (GUARDAR/CARGAR) ---
@@ -45,7 +45,7 @@ public class Biblioteca implements Serializable {
     // --- MÉTODOS NORMALES ---
 
     public void agregarJuego(Juego juego) {
-        juegos.add(juego);
+        listaMaestra.add(juego);
         guardarEnDisco(); // Auto-guardar cada vez que agregamos
     }
     
@@ -55,15 +55,15 @@ public class Biblioteca implements Serializable {
     }
 
     public void crearSubcoleccion(String nombre) {
-        subcolecciones.add(new Subcoleccion(nombre));
+        misColecciones.add(new Subcoleccion(nombre));
         guardarEnDisco(); // Auto-guardar
     }
 
-    public List<Juego> getTodosLosJuegos() { return juegos; }
-    public List<Subcoleccion> getsubcolecciones() { return subcolecciones; }
+    public List<Juego> getTodosLosJuegos() { return listaMaestra; }
+    public List<Subcoleccion> getMisColecciones() { return misColecciones; }
 
     public List<Juego> filtrarPorPlataforma(String plataformaBuscada) {
-            return juegos.stream()
+            return listaMaestra.stream()
                     // Verificamos si la lista del juego CONTIENE la plataforma buscada
                     .filter(j -> j.getPlataformas().contains(plataformaBuscada))
                     .collect(Collectors.toList());
@@ -71,10 +71,10 @@ public class Biblioteca implements Serializable {
 
     public void eliminarJuegoGlobal(Juego juego) {
         // 1. Borrar de la lista maestra
-        juegos.remove(juego);
+        listaMaestra.remove(juego);
         
         // 2. Borrar de todas las subcolecciones (Favoritos, etc.)
-        for (Subcoleccion sub : subcolecciones) {
+        for (Subcoleccion sub : misColecciones) {
             sub.eliminarJuego(juego);
         }
         
@@ -87,7 +87,7 @@ public class Biblioteca implements Serializable {
      * Si un parámetro es null o vacío, se ignora ese criterio.
      */
     public List<Juego> buscarJuegos(String texto, String plataforma, String genero, Integer añoMin, Integer añoMax) {
-        return juegos.stream().filter(j -> {
+        return listaMaestra.stream().filter(j -> {
             boolean coincide = true;
 
             // 1. Filtro por Texto (Busca en Título o Desarrollador)
@@ -120,5 +120,72 @@ public class Biblioteca implements Serializable {
 
             return coincide;
         }).collect(Collectors.toList());
+    }
+
+    // --- NUEVO MÉTODO PARA DETECTAR DUPLICADOS ---
+    public boolean existeJuego(String titulo) {
+        if (titulo == null || titulo.isEmpty()) return false;
+        
+        // Busca en la lista maestra ignorando mayúsculas/minúsculas
+        for (Juego j : listaMaestra) {
+            if (j.getTitulo().equalsIgnoreCase(titulo.trim())) {
+                return true; // ¡Encontrado!
+            }
+        }
+        return false; // No existe
+    }
+
+    /**
+     * Busca juegos que se escriban casi igual al título nuevo.
+     * Retorna una lista de sugerencias.
+     */
+    public List<String> buscarPosiblesDuplicados(String tituloNuevo) {
+        List<String> similares = new ArrayList<>();
+        String tituloA = tituloNuevo.toLowerCase().trim();
+        
+        for (Juego j : listaMaestra) {
+            String tituloB = j.getTitulo().toLowerCase();
+            
+            // Calculamos la "distancia" (cuántos caracteres hay de diferencia)
+            int distancia = calcularLevenshtein(tituloA, tituloB);
+            
+            // Si hay menos de 3 cambios de diferencia y no son idénticos
+            // (Ej: "Zelda" vs "Zeldda" tiene distancia 1)
+            if (distancia > 0 && distancia <= 2) { 
+                similares.add(j.getTitulo());
+            }
+            
+            // También detecta si uno contiene al otro (Ej: "God of War" vs "God of War 3")
+            // Esto es opcional, pero útil.
+            if (distancia > 2 && (tituloA.contains(tituloB) || tituloB.contains(tituloA))) {
+                 // Solo si la diferencia de longitud es pequeña (para evitar falsos positivos)
+                 if (Math.abs(tituloA.length() - tituloB.length()) < 4) {
+                     similares.add(j.getTitulo());
+                 }
+            }
+        }
+        return similares;
+    }
+
+    /**
+     * Algoritmo estándar de Levenshtein.
+     * Calcula el número de ediciones (borrar, insertar, sustituir) para convertir s1 en s2.
+     */
+    private int calcularLevenshtein(String s1, String s2) {
+        int[][] dp = new int[s1.length() + 1][s2.length() + 1];
+
+        for (int i = 0; i <= s1.length(); i++) dp[i][0] = i;
+        for (int j = 0; j <= s2.length(); j++) dp[0][j] = j;
+
+        for (int i = 1; i <= s1.length(); i++) {
+            for (int j = 1; j <= s2.length(); j++) {
+                int costo = (s1.charAt(i - 1) == s2.charAt(j - 1)) ? 0 : 1;
+                dp[i][j] = Math.min(Math.min(
+                    dp[i - 1][j] + 1,      // Borrado
+                    dp[i][j - 1] + 1),     // Inserción
+                    dp[i - 1][j - 1] + costo); // Sustitución
+            }
+        }
+        return dp[s1.length()][s2.length()];
     }
 }

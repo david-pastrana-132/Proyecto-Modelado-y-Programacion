@@ -34,7 +34,7 @@ public class MainFrame extends JFrame {
 
     // Configuración básica de la ventana 
     private void configurarVentana() {
-        setTitle("BlueNexus - Gestor de Videojuegos");
+        setTitle("Gestor de Videojuegos");
         setSize(1280, 850);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);

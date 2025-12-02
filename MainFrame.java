@@ -718,23 +718,6 @@ public class MainFrame extends JFrame {
             "Epic Games", "Epic Games", 0, 0.00, "Popular juego multijugador", 100, "Online", "T"
         ));
         biblioteca.crearSubcoleccion("Favoritos");
-
-        java.util.List<String> platsCeleste = new java.util.ArrayList<>();
-        platsCeleste.add("PC");
-        platsCeleste.add("PlayStation 4");
-        platsCeleste.add("Nintendo Switch");
-        biblioteca.agregarJuego(new Juego(
-            "Celeste", platsCeleste, "Plataformas", 2018, 9.3, "imagenes/celeste.jpg",
-            "Maddy Makes Games", "Maddy Makes Games", 15, 19.99, "Desafiante y emotivo", 1, "Local", "E"
-        ));
-
-        java.util.List<String> platsAmongUs = new java.util.ArrayList<>();
-        platsAmongUs.add("PC");
-        platsAmongUs.add("Nintendo Switch");
-        biblioteca.agregarJuego(new Juego(
-            "Among Us", platsAmongUs, "Multijugador", 2018, 8.2, "imagenes/among_us.jpg",
-            "Innersloth", "Innersloth", 10, 4.99, "Divertido juego de deducción", 10, "Online", "E10"
-        ));
     }
     
     private void agregarCampo(JPanel panel, String etiqueta, JComponent campo) {

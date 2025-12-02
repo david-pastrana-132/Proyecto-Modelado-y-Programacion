@@ -2,6 +2,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+//Añadimos la interfaz Serializable a Subcoleccion
 public class Subcoleccion implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -9,6 +10,7 @@ public class Subcoleccion implements Serializable {
     private String tipo; 
     private List<Juego> juegos;
 
+    //Métodos constructores
     public Subcoleccion() {
         this.juegos = new ArrayList<>();
     }
@@ -76,7 +78,7 @@ public class Subcoleccion implements Serializable {
     public void setTipo(String tipo) { this.tipo = tipo; }
     public List<Juego> getJuegos() { return juegos; }
     public void setJuegos(List<Juego> juegos) { this.juegos = juegos; }
-
+    //Añadimos el método toString para poder regresar datos de la subcolección
     @Override
     public String toString() { return nombre; }
 }

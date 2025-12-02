@@ -2,13 +2,13 @@ import java.io.Serializable;
 import java.util.List; // Importar List
 import java.util.ArrayList;
 
+// Clase que representa un juego con sus atributos principales
+// Añadimos Serializable para persistencia
 public class Juego implements Serializable {
-    private static final long serialVersionUID = 2L; // Cambiamos versión para forzar actualización
+    private static final long serialVersionUID = 2L; 
 
     private String titulo;
-    private List<String> plataformas; // CAMBIO: Ahora es una lista
-    
-    // Resto de atributos...
+    private List<String> plataformas; 
     private String genero;
     private int añoLanzamiento;
     private double calificacion;
@@ -22,7 +22,7 @@ public class Juego implements Serializable {
     private String conectividad; 
     private String clasificacionEdades; 
 
-    // Constructor actualizado recibe List<String>
+    // Método constructor 
     public Juego(String titulo, List<String> plataformas, String genero, int año, double calificacion, String rutaImagen, 
                  String desarrollador, String editores, int duracionHoras, double precio, String comentarios, 
                  int numJugadores, String conectividad, String clasificacionEdades) {
@@ -42,14 +42,11 @@ public class Juego implements Serializable {
         this.clasificacionEdades = clasificacionEdades; 
     }
 
-    // Getters y Setters actualizados
-    
-    // NUEVO MÉTODO ÚTIL: Convierte la lista ["PC", "Xbox"] en el texto "PC, Xbox"
-    
-
        // --- GETTERS ---
     public String getTitulo() { return titulo; }
+
     public List<String> getPlataformas() { return plataformas; }
+    // Método adicional para obtener las plataformas como texto
     public String getPlataformasTexto() {
         if (plataformas == null || plataformas.isEmpty()) return "Sin Plataforma";
         return String.join(", ", plataformas);

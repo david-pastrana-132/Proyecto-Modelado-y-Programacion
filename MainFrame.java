@@ -295,7 +295,7 @@ public class MainFrame extends JFrame {
         JTextField txtPrecio = new JTextField(esEdicion ? String.valueOf(juegoAEditar.getPrecio()) : "---");
         JTextField txtJugadores = new JTextField(esEdicion ? String.valueOf(juegoAEditar.getNumJugadores()) : "---");
         
-        JComboBox<String> cbConectividad = new JComboBox<>(new String[]{"Local", "Online", "Ambos", "Desconocido"});
+        JComboBox<String> cbConectividad = new JComboBox<>(new String[]{"Local", "Online", "Local y Online", "Desconocido"});
         if(esEdicion) cbConectividad.setSelectedItem(juegoAEditar.getConectividad());
 
         JComboBox<String> cbESRB = new JComboBox<>(new String[]{"E", "E10+", "T", "M", "AO", "RP"});
@@ -657,6 +657,51 @@ public class MainFrame extends JFrame {
             "343 Industries", "Xbox Game Studios", 15, 60.00, "Multijugador", 1, "Online", "T"
         ));
 
+        java.util.List<String> platsMarioOdyssey = new java.util.ArrayList<>();
+        platsMarioOdyssey.add("Nintendo Switch");
+        platsMarioOdyssey.add("Nintendo Switch 2");
+
+        biblioteca.agregarJuego(new Juego(
+            "Super Mario Odyssey", platsMarioOdyssey, "Plataformas", 2017, 9.7, "imagenes/mario_odyssey.jpg",
+            "Nintendo EPD", "Nintendo", 20, 49.99, "Divertido y creativo", 1, "Local", "E"
+        ));
+
+        java.util.List<String> platsCyberpunk = new java.util.ArrayList<>();
+        platsCyberpunk.add("PC");
+        platsCyberpunk.add("PlayStation 4");
+        platsCyberpunk.add("PlayStation 5");
+        platsCyberpunk.add("Nintendo Switch 2");
+        platsCyberpunk.add("Xbox One");
+        platsCyberpunk.add("Xbox Series X/S");
+        biblioteca.agregarJuego(new Juego(
+            "Cyberpunk 2077", platsCyberpunk, "RPG", 2020, 7.5, "imagenes/cyberpunk_2077.jpg",
+            "CD Projekt Red", "CD Projekt", 40, 59.99, "¿Excelente juego pero lleno de bugs", 1, "Online", "M"
+        ));
+
+        java.util.List<String> platsTLoZOOT = new java.util.ArrayList<>();
+        platsTLoZOOT.add("Nintendo 64");
+        platsTLoZOOT.add("Nintendo Switch");
+        platsTLoZOOT.add("Nintendo Switch 2");
+        platsTLoZOOT.add("Wii U");
+        platsTLoZOOT.add("GameCube");
+        platsTLoZOOT.add("Wii");
+        biblioteca.agregarJuego(new Juego(
+            "The Legend of Zelda: Ocarina of Time", platsTLoZOOT, "Aventura", 1998, 9.9, "imagenes/zelda_oot.jpg",
+            "Nintendo EAD", "Nintendo", 25, 39.99, "Clásico atemporal", 1, "Local", "E"
+        ));
+        
+        java.util.List<String> platsFortnite = new java.util.ArrayList<>();
+        platsFortnite.add("PC");
+        platsFortnite.add("PlayStation 4");
+        platsFortnite.add("PlayStation 5");
+        platsFortnite.add("Nintendo Switch");
+        platsFortnite.add("NIntendo Switch 2");
+        platsFortnite.add("Xbox One");
+        platsFortnite.add("Xbox Series X/S");
+        biblioteca.agregarJuego(new Juego(
+            "Fortnite", platsFortnite, "Battle Royale", 2017, 8.0, "imagenes/fortnite.jpg",
+            "Epic Games", "Epic Games", 0, 0.00, "Popular juego multijugador", 100, "Online", "T"
+        ));
         biblioteca.crearSubcoleccion("Favoritos");
     }
     

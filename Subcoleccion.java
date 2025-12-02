@@ -2,7 +2,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//Añadimos la interfaz Serializable a Subcoleccion
+// Clase que representa una subcolección de juegos dentro de la biblioteca
+// Añadimos Serializable para persistencia
 public class Subcoleccion implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -10,7 +11,7 @@ public class Subcoleccion implements Serializable {
     private String tipo; 
     private List<Juego> juegos;
 
-    //Métodos constructores
+    // Métodos constructores
     public Subcoleccion() {
         this.juegos = new ArrayList<>();
     }
@@ -38,11 +39,13 @@ public class Subcoleccion implements Serializable {
         juegos.remove(juego);
     }
 
-    // --- ESTADÍSTICAS (Corregidas para el PDF) ---
+    // --- ESTADÍSTICAS ---
+    // Método para obtener el número de juegos en la subcolección
     public int getNumeroJuegos() {
         return juegos.size();
     }
 
+    // Método para obtener el promedio de calificaciones de los juegos en la subcolección
     public double getPromedioCalificacion() {
         if (juegos.isEmpty()) return 0.0;
         double suma = 0.0;
@@ -52,6 +55,7 @@ public class Subcoleccion implements Serializable {
         return suma / juegos.size();
     }
 
+    // Método para obtener la duración total de los juegos en horas
     public int getDuracionTotal() {
         int suma = 0;
         for (Juego juego : juegos) {
@@ -60,6 +64,7 @@ public class Subcoleccion implements Serializable {
         return suma;
     }
 
+    // Método para obtener el juego con mejor calificación
     public Juego getJuegoMejorValorado() {
         if (juegos.isEmpty()) return null;
         Juego mejor = juegos.get(0);
@@ -78,7 +83,7 @@ public class Subcoleccion implements Serializable {
     public void setTipo(String tipo) { this.tipo = tipo; }
     public List<Juego> getJuegos() { return juegos; }
     public void setJuegos(List<Juego> juegos) { this.juegos = juegos; }
-    //Añadimos el método toString para poder regresar datos de la subcolección
+
     @Override
     public String toString() { return nombre; }
 }

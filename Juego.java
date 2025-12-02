@@ -7,6 +7,8 @@ public class Juego implements Serializable {
 
     private String titulo;
     private List<String> plataformas; // CAMBIO: Ahora es una lista
+    
+    // Resto de atributos...
     private String genero;
     private int añoLanzamiento;
     private double calificacion;
@@ -41,46 +43,48 @@ public class Juego implements Serializable {
     }
 
     // Getters y Setters actualizados
-    public List<String> getPlataformas() { return plataformas; }
     
     // NUEVO MÉTODO ÚTIL: Convierte la lista ["PC", "Xbox"] en el texto "PC, Xbox"
+    
+
+       // --- GETTERS ---
+    public String getTitulo() { return titulo; }
+    public List<String> getPlataformas() { return plataformas; }
     public String getPlataformasTexto() {
         if (plataformas == null || plataformas.isEmpty()) return "Sin Plataforma";
         return String.join(", ", plataformas);
     }
-
-    public void setPlataformas(List<String> plataformas) { this.plataformas = plataformas; }
-
-    // ... (El resto de getters y setters de los otros campos se mantienen igual) ...
-    // Copia aquí el resto de tus getters/setters (Genero, Titulo, etc.) del código anterior
-    public String getTitulo() { return titulo; }
-    public void setTitulo(String t) { this.titulo = t; }
     public String getGenero() { return genero; }
-    public void setGenero(String g) { this.genero = g; }
     public double getCalificacion() { return calificacion; }
-    public void setCalificacion(double c) { this.calificacion = c; }
     public String getRutaImagen() { return rutaImagen; }
-    public void setRutaImagen(String r) { this.rutaImagen = r; }
     public int getAñoLanzamiento() { return añoLanzamiento; }
-    public void setAñoLanzamiento(int a) { this.añoLanzamiento = a; }
-    // ... agrega el resto ...
     public String getDesarrollador() { return desarrollador; }
-    public void setDesarrollador(String d) { this.desarrollador = d; }
     public String getEditores() { return editores; }
-    public void setEditores(String e) { this.editores = e; }
     public int getDuracionHoras() { return duracionHoras; }
-    public void setDuracionHoras(int d) { this.duracionHoras = d; }
     public double getPrecio() { return precio; }
-    public void setPrecio(double p) { this.precio = p; }
     public String getComentarios() { return comentarios; }
-    public void setComentarios(String c) { this.comentarios = c; }
     public int getNumJugadores() { return numJugadores; }
-    public void setNumJugadores(int n) { this.numJugadores = n; }
     public String getConectividad() { return conectividad; }
-    public void setConectividad(String c) { this.conectividad = c; }
-    public String getClasificacionEdades() { return clasificacionEdades; }
-    public void setClasificacionEdades(String c) { this.clasificacionEdades = c; }
+    public String getClasificacionEdades() { return clasificacionEdades; }   
+
+    // --- SETTERS ---
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+    public void setPlataformas(List<String> plataformas) { this.plataformas = plataformas; }
+    public void setGenero(String genero) { this.genero = genero; }
+    public void setCalificacion(double calificacion) { this.calificacion = calificacion; }
+    public void setRutaImagen(String rutaImagen) { this.rutaImagen = rutaImagen; }
+    public void setAñoLanzamiento(int añoLanzamiento) { this.añoLanzamiento = añoLanzamiento; } 
+    public void setDesarrollador(String desarrollador) { this.desarrollador = desarrollador; }
+    public void setEditores(String editores) { this.editores = editores; }
+    public void setDuracionHoras(int duracionHoras) { this.duracionHoras = duracionHoras; }
+    public void setPrecio(double precio) { this.precio = precio; }
+    public void setComentarios(String comentarios) { this.comentarios = comentarios; }
+    public void setNumJugadores(int numJugadores) { this.numJugadores = numJugadores; }
+    public void setConectividad(String conectividad) { this.conectividad = conectividad; }
+    public void setClasificacionEdades(String clasificacionEdades) { this.clasificacionEdades = clasificacionEdades; }
 
     @Override
     public String toString() { return titulo; }
 }
+
+

@@ -1,3 +1,5 @@
+//Integrantes del equipo: David Pastrana Trujillo. Barbosa Olivares Keit Ehecatl
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;

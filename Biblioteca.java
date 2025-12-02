@@ -168,8 +168,8 @@ public class Biblioteca implements Serializable {
     }
 
     /**
-     * Algoritmo estándar de Levenshtein.
-     * Calcula el número de ediciones (borrar, insertar, sustituir) para convertir s1 en s2.
+     * Algoritmo de Levenshtein.
+     * Calcula el número de ediciones (borrar, insertar, sustituir)
      */
     private int calcularLevenshtein(String s1, String s2) {
         int[][] dp = new int[s1.length() + 1][s2.length() + 1];

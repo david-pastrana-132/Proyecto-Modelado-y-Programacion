@@ -54,6 +54,7 @@ public class Biblioteca implements Serializable {
         guardarEnDisco();
     }
 
+    //Métodos de gestión de subcolecciones
     public void crearSubcoleccion(String nombre) {
         misColecciones.add(new Subcoleccion(nombre));
         guardarEnDisco(); // Auto-guardar
@@ -62,6 +63,7 @@ public class Biblioteca implements Serializable {
     public List<Juego> getTodosLosJuegos() { return listaMaestra; }
     public List<Subcoleccion> getMisColecciones() { return misColecciones; }
 
+    //Método de filtrado para subcolecciones
     public List<Juego> filtrarPorPlataforma(String plataformaBuscada) {
             return listaMaestra.stream()
                     // Verificamos si la lista del juego CONTIENE la plataforma buscada

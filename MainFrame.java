@@ -102,12 +102,27 @@ public class MainFrame extends JFrame {
         
         mainContent.add(topContainer, BorderLayout.NORTH);
 
-        gridPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 15));
+
+        // --- GRID DE JUEGOS ---
+        
+        // 1. Usamos GridLayout(0, 8) -> 0 filas, 8 columnas
+        gridPanel = new JPanel(new GridLayout(0, 8, 15, 15));
         gridPanel.setBackground(Estilos.FONDO_PANEL);
         
-        JScrollPane scrollGrid = new JScrollPane(gridPanel);
+        // 2. Truco para que los juegos no se estiren verticalmente si hay pocos
+        // Metemos el grid dentro de un panel BorderLayout al Norte
+        JPanel contenedorGrid = new JPanel(new BorderLayout());
+        contenedorGrid.setBackground(Estilos.FONDO_PANEL);
+        contenedorGrid.add(gridPanel, BorderLayout.NORTH);
+        
+        // 3. Scroll Pane configurado
+        JScrollPane scrollGrid = new JScrollPane(contenedorGrid); // <--- OJO AQUÍ
         scrollGrid.setBorder(null);
         scrollGrid.getVerticalScrollBar().setUnitIncrement(16);
+        
+        // Configurar políticas de scroll para forzar vertical
+        scrollGrid.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollGrid.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         
         mainContent.add(scrollGrid, BorderLayout.CENTER);
         add(mainContent, BorderLayout.CENTER);
@@ -702,50 +717,24 @@ public class MainFrame extends JFrame {
             "Fortnite", platsFortnite, "Battle Royale", 2017, 8.0, "imagenes/fortnite.jpg",
             "Epic Games", "Epic Games", 0, 0.00, "Popular juego multijugador", 100, "Online", "T"
         ));
-
-        java.util.List<String> platsSuperSmashBros = new java.util.ArrayList<>();
-        platsSuperSmashBros.add("Nintendo Switch");
-        platsSuperSmashBros.add("Wii U");
-        platsSuperSmashBros.add("Wii");
-        platsSuperSmashBros.add("Nintendo 64");
-        platsSuperSmashBros.add("Nintendo DS");
-        platsSuperSmashBros.add("Nintendo 3DS");
-        biblioteca.agregarJuego(new Juego(
-            "Super Smash Bros", platsSuperSmashBros, "Lucha", 1999, 9.03, "imagenes/smash.jpg",
-            "Bandai Namco", "Nintendo", 4, 59.99, "El más clasico juego de luchas multijugador", 8, "Online", "T"
-        ));
-
-        java.util.List<String> platsHollowKnight = new java.util.ArrayList<>();
-        platsHollowKnight.add("Nintendo Switch");
-        platsHollowKnight.add("Xbox One");
-        platsHollowKnight.add("PlayStation 4");
-        platsHollowKnight.add("PC");
-        biblioteca.agregarJuego(new Juego(
-            "Hollow Knight", platsHollowKnight, "Metroidvania", 2017, 9.2, "imagenes/hollow_knight.jpg",
-            "Team Cherry", "Team Cherry", 65, 14.99, "El mejor indie estilo metroidvania", 1, "Local", "E10+"
-        ));
-
-        java.util.List<String> platsClashRoyale = new java.util.ArrayList<>();
-        platsClashRoyale.add("Mobile (Android/iOS)");
-        biblioteca.agregarJuego(new Juego(
-            "Clash Royale", platsClashRoyale, "Estrategia", 2016, 8.12, "imagenes/clash_royale.jpg",
-            "Supercell", "Supercell", 0, 0.00, "Lo más adictivo que he jugado en mi vida", 1, "Online", "E"
-        ));
-
-        java.util.List<String> platsSuperMetalSlugX = new java.util.ArrayList<>();
-        platsSuperMetalSlugX.add("Pc");
-        platsSuperMetalSlugX.add("PlayStation 1");
-        platsSuperMetalSlugX.add("Arcade");
-        platsSuperMetalSlugX.add("Neo Geo");
-        platsSuperMetalSlugX.add("Mobile (Android/iOS)");
-        platsSuperMetalSlugX.add("PSP");
-        biblioteca.agregarJuego(new Juego(
-            "Metal Slug X", platsSuperMetalSlugX, "Acción", 2003, 7.75, "imagenes/metal_slug_x.jpg",
-            "SNK", "SNK", 1, 7.99, "Lo que todos jugaban en clase de computacion en primaria", 2, "Local", "T"
-        ));
-        
         biblioteca.crearSubcoleccion("Favoritos");
-        
+
+        java.util.List<String> platsCeleste = new java.util.ArrayList<>();
+        platsCeleste.add("PC");
+        platsCeleste.add("PlayStation 4");
+        platsCeleste.add("Nintendo Switch");
+        biblioteca.agregarJuego(new Juego(
+            "Celeste", platsCeleste, "Plataformas", 2018, 9.3, "imagenes/celeste.jpg",
+            "Maddy Makes Games", "Maddy Makes Games", 15, 19.99, "Desafiante y emotivo", 1, "Local", "E"
+        ));
+
+        java.util.List<String> platsAmongUs = new java.util.ArrayList<>();
+        platsAmongUs.add("PC");
+        platsAmongUs.add("Nintendo Switch");
+        biblioteca.agregarJuego(new Juego(
+            "Among Us", platsAmongUs, "Multijugador", 2018, 8.2, "imagenes/among_us.jpg",
+            "Innersloth", "Innersloth", 10, 4.99, "Divertido juego de deducción", 10, "Online", "E10"
+        ));
     }
     
     private void agregarCampo(JPanel panel, String etiqueta, JComponent campo) {

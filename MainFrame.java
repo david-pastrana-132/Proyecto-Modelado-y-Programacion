@@ -717,6 +717,48 @@ public class MainFrame extends JFrame {
             "Fortnite", platsFortnite, "Battle Royale", 2017, 8.0, "imagenes/fortnite.jpg",
             "Epic Games", "Epic Games", 0, 0.00, "Popular juego multijugador", 100, "Online", "T"
         ));
+
+        java.util.List<String> platsSuperSmashBros = new java.util.ArrayList<>();
+        platsSuperSmashBros.add("Nintendo Switch");
+        platsSuperSmashBros.add("Wii U");
+        platsSuperSmashBros.add("Wii");
+        platsSuperSmashBros.add("Nintendo 64");
+        platsSuperSmashBros.add("Nintendo DS");
+        platsSuperSmashBros.add("Nintendo 3DS");
+        biblioteca.agregarJuego(new Juego(
+            "Super Smash Bros", platsSuperSmashBros, "Lucha", 1999, 9.03, "imagenes/smash.jpg",
+            "Bandai Namco", "Nintendo", 4, 59.99, "El más clasico juego de luchas multijugador", 8, "Online", "T"
+        ));
+
+        java.util.List<String> platsHollowKnight = new java.util.ArrayList<>();
+        platsHollowKnight.add("Nintendo Switch");
+        platsHollowKnight.add("Xbox One");
+        platsHollowKnight.add("PlayStation 4");
+        platsHollowKnight.add("PC");
+        biblioteca.agregarJuego(new Juego(
+            "Hollow Knight", platsHollowKnight, "Metroidvania", 2017, 9.2, "imagenes/hollow_knight.jpg",
+            "Team Cherry", "Team Cherry", 65, 14.99, "El mejor indie estilo metroidvania", 1, "Local", "E10+"
+        ));
+
+        java.util.List<String> platsClashRoyale = new java.util.ArrayList<>();
+        platsClashRoyale.add("Mobile (Android/iOS)");
+        biblioteca.agregarJuego(new Juego(
+            "Clash Royale", platsClashRoyale, "Estrategia", 2016, 8.12, "imagenes/clash_royale.jpg",
+            "Supercell", "Supercell", 0, 0.00, "Lo más adictivo que he jugado en mi vida", 1, "Online", "E"
+        ));
+
+        java.util.List<String> platsSuperMetalSlugX = new java.util.ArrayList<>();
+        platsSuperMetalSlugX.add("Pc");
+        platsSuperMetalSlugX.add("PlayStation 1");
+        platsSuperMetalSlugX.add("Arcade");
+        platsSuperMetalSlugX.add("Neo Geo");
+        platsSuperMetalSlugX.add("Mobile (Android/iOS)");
+        platsSuperMetalSlugX.add("PSP");
+        biblioteca.agregarJuego(new Juego(
+            "Metal Slug X", platsSuperMetalSlugX, "Acción", 2003, 7.75, "imagenes/metal_slug_x.jpg",
+            "SNK", "SNK", 1, 7.99, "Lo que todos jugaban en clase de computacion en primaria", 2, "Local", "T"
+        ));
+        
         biblioteca.crearSubcoleccion("Favoritos");
     }
     

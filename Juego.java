@@ -1,3 +1,5 @@
+//Integrantes del equipo: Pastrana Trujillo David. Barbosa Olivares Keit Ehecatl
+
 import java.io.Serializable;
 import java.util.List; // Importar List
 import java.util.ArrayList;
